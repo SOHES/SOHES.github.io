@@ -1,7 +1,368 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Self-supervised model for segmenting visual entities and their constituent parts in an open world.">
+  <meta name="keywords" content="SOHES, self-supervised learning, image segmentation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SOHES: Self-supervised Open-world Hierarchical Entity Segmentation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/button_style.css">
+  <link rel="icon" href="./static/images/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script defer src="./static/js/brands.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
 <body>
-<h1>SOHES: Self-supervised Open-world Hierarchical Entity Segmentation</h1>
-<p>Just a placeholder for now.</p>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SOHES: Self-supervised Open-world Hierarchical Entity Segmentation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://shengcao-cao.github.io/">Shengcao Cao</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://gujiuxiang.com/">Jiuxiang Gu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://research.adobe.com/person/jason-kuen/">Jason Kuen</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://research.adobe.com/person/hao-tan/">Hao Tan</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://zhangry868.github.io/">Ruiyi Zhang</a><sup>2</sup>,
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://hdzhao.github.io/">Handong Zhao</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=vXQdb5kAAAAJ&hl=en">Ani Nenkova</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cs.illinois.edu/about/people/faculty/lgui">Liang-Yan Gui</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://research.adobe.com/person/tong-sun/">Tong Sun</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://yxw.web.illinois.edu/">Yu-Xiong Wang</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Illinois at Urbana-Champaign,</span>
+            <span class="author-block"><sup>2</sup>Adobe</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2402.03311"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://openreview.net/pdf?id=PXNrncg2DF"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>OpenReview</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=s8u7tEKg5ew"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video (YouTube)</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://www.bilibili.com/video/BV1pg4y1Z7CK"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa-brands fa-bilibili"></i>
+                  </span>
+                  <span>Video (Bilibili)</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/Shengcao-Cao/HASSOD"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <!-- Caption -->
+        <h2 class="subtitle has-text-centered" style="font-size: 24px; font-weight: bold;">
+          <p>
+            We present SOHES, a self-supervised method <br>
+            for segmenting visual entities and their parts in an open world.
+          </p>
+        </h2>
+        <!-- Image Container -->
+        <!-- <div class="image-container" style="display: flex; justify-content: center;">
+            <img src="./static/images/SOHES-teaser.png" alt="Teaser Image" style="width: 100%; height: auto; object-fit: contain;">
+        </div> -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              const videos = [
+                'sa_2.mp4', 'sa_4.mp4', 'sa_5.mp4', 'sa_8.mp4','sa_9.mp4',
+                'sa_11.mp4', 'sa_21.mp4', 'sa_22.mp4', 'sa_23.mp4', 'sa_30.mp4',
+                'sa_33.mp4', 'sa_37.mp4', 'sa_42.mp4', 'sa_43.mp4', 'sa_44.mp4',
+                'sa_45.mp4', 'sa_46.mp4', 'sa_48.mp4', 'sa_51.mp4', 'sa_53.mp4',
+                'sa_54.mp4', 'sa_56.mp4', 'sa_60.mp4', 'sa_62.mp4', 'sa_63.mp4',
+                'sa_64.mp4', 'sa_68.mp4', 'sa_69.mp4', 'sa_76.mp4', 'sa_80.mp4',
+                'sa_82.mp4', 'sa_86.mp4', 'sa_87.mp4', 'sa_88.mp4', 'sa_89.mp4',
+                'sa_90.mp4', 'sa_91.mp4', 'sa_93.mp4', 'sa_98.mp4', 'sa_99.mp4',
+                'sa_102.mp4', 'sa_104.mp4', 'sa_108.mp4', 'sa_112.mp4', 'sa_113.mp4',
+                'sa_115.mp4', 'sa_117.mp4', 'sa_122.mp4', 'sa_124.mp4', 'sa_127.mp4',
+                'sa_129.mp4', 'sa_133.mp4', 'sa_134.mp4', 'sa_136.mp4', 'sa_138.mp4',
+                'sa_139.mp4', 'sa_144.mp4', 'sa_146.mp4', 'sa_149.mp4', 'sa_151.mp4',
+                'sa_154.mp4', 'sa_156.mp4', 'sa_165.mp4', 'sa_168.mp4', 'sa_173.mp4',
+                'sa_175.mp4', 'sa_177.mp4', 'sa_179.mp4', 'sa_181.mp4', 'sa_182.mp4',
+                'sa_183.mp4', 'sa_184.mp4', 'sa_186.mp4'
+              ];
+        
+              const selectedVideos = videos.sort(() => 0.5 - Math.random()).slice(0, 4);
+        
+              document.querySelectorAll('.video').forEach((element, index) => {
+                  element.src = `./static/videos/${selectedVideos[index]}`;
+              });
+          });
+        </script>
+        <div class="video-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; justify-content: center; align-items: center;">
+          <!-- Placeholder for videos -->
+          <video controls autoplay loop muted class="video"></video>
+          <video controls autoplay loop muted class="video"></video>
+          <video controls autoplay loop muted class="video"></video>
+          <video controls autoplay loop muted class="video"></video>
+        </div>
+        <h2 class="subtitle has-text-centered">
+          <p>
+            Refresh the page to see more examples.
+          </p>
+        </h2>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Open-world entity segmentation, as an emerging computer vision task, aims at
+            segmenting entities in images without being restricted by pre-defined classes,
+            offering impressive generalization capabilities on unseen images and concepts.
+            Despite its promise, existing entity segmentation methods like Segment Anything
+            Model (SAM) rely heavily on costly expert annotators.
+          </p>
+          <p>
+            This work presents Self-supervised Open-world Hierarchical Entity Segmentation (SOHES),
+            a novel approach that eliminates the need for human annotations. SOHES operates in
+            three phases: self-exploration, self-instruction, and self-correction. Given a
+            pre-trained self-supervised representation, we produce abundant high-quality pseudo-labels
+            through visual feature clustering. Then, we train a segmentation model on
+            the pseudo-labels, and rectify the noises in pseudo-labels via a teacher-student
+            mutual-learning procedure. Beyond segmenting entities, SOHES also captures
+            their constituent parts, providing a hierarchical understanding of visual entities.
+          </p>
+          <p>
+            Using raw images as the sole training data, our method achieves unprecedented
+            performance in self-supervised open-world segmentation, marking a significant
+            milestone towards high-quality open-world entity segmentation in the absence of
+            human-annotated masks.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Approach</h2>
+
+        <div class="content has-text-justified">
+          <img src="./static/images/SOHES-phases.png" alt="Three phases of SOHES" style="max-width: 100%; height: auto;">
+          <p>
+            <strong>Three phases of SOHES.</strong>
+            In the first self-exploration phase, we cluster visual features
+            from pre-trained DINO to generate initial pseudo-labels on unlabeled images.
+            Then in the self-instruction phase, a segmentation model learns from the initial pseudo-labels.
+            Finally, in the self-correction phase, we adopt a teacher-student framework to further refine the segmentation model.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <img src="./static/images/SOHES-pl.png" alt="Self-exploration phase for generating initial pseudo-labels" style="max-width: 100%; height: auto;">
+          <p>
+            <strong>Self-exploration phase for generating initial pseudo-labels.</strong>
+            This phase consists of four
+            steps. We first merge image patches into regions with high visual feature similarities, then zoom in
+            on the small candidate regions and re-cluster the local images to better discover small entities. After
+            that, we refine the mask details and identify the hierarchical structure among the masks.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+        
+        <div class="content has-text-justified">
+          <img src="./static/images/SOHES-teaser.png" alt="Teaser" style="max-width: 100%; height: auto;">
+          <p>
+            <strong>SOHES boosts open-world entity segmentation with self-supervision on various image datasets.</strong>
+            Compared to prior state of the art, SOHES significantly reduces the gap between
+            self-supervised methods and the supervised Segment Anything Model (SAM),
+            using only 2% unlabeled image data as SAM.
+          </p>
+        </div>
+
+        <div class="content has-text-centered">
+          <p>
+            Click on the buttons below to see the visual results on various image datasets, <br>
+            and compare the inputs (top), SAM results (middle), and our SOHES results (bottom).
+          </p>
+          <!-- Buttons for Selecting Datasets -->
+          <div class="buttons is-centered">
+            <button onclick="showImage('coco')">MS-COCO</button>
+            <button onclick="showImage('ade20k')">ADE20K</button>
+            <button onclick="showImage('entityseg')">EntitySeg</button>
+            <button onclick="showImage('sa1b')">SA-1B</button>
+            <button onclick="showImage('partimagenet')">PartImageNet</button>
+          </div>
+
+          <!-- Containers for Images -->
+          <div id="coco" class="vis-image-container" style="display: none;">
+            <img src="static/images/SOHES-qual-coco.png" alt="MS-COCO Results">
+          </div>
+          <div id="ade20k" class="vis-image-container" style="display: none;">
+            <img src="static/images/SOHES-qual-ade20k.png" alt="ADE20K Results">
+          </div>
+          <div id="entityseg" class="vis-image-container" style="display: none;">
+            <img src="static/images/SOHES-qual-entityseg.png" alt="EntitySeg Results">
+          </div>
+          <div id="sa1b" class="vis-image-container" style="display: none;">
+            <img src="static/images/SOHES-qual-sa1b.png" alt="SA-1B Results">
+          </div>
+          <div id="partimagenet" class="vis-image-container" style="display: none;">
+            <img src="static/images/SOHES-qual-partimagenet.png" alt="PartImageNet Results">
+          </div>
+
+          <script>
+            function showImage(dataset) {
+              // Hide all images
+              document.querySelectorAll('.vis-image-container').forEach(function(el) {
+                el.style.display = 'none';
+              });
+            
+              // Show the selected image
+              document.getElementById(dataset).style.display = 'block';
+            }
+          </script>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{cao2024sohes,
+  title={{SOHES}: Self-supervised Open-world Hierarchical Entity Segmentation},
+  author={Cao, Shengcao and Gu, Jiuxiang and Kuen, Jason and Tan, Hao and Zhang, Ruiyi and Zhao, Handong and Nenkova, Ani and Gui, Liang-Yan and Sun, Tong and Wang, Yu-Xiong},
+  booktitle={ICLR},
+  year={2024}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>,
+            licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
