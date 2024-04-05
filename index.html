@@ -171,8 +171,12 @@
         
               const selectedVideos = videos.sort(() => 0.5 - Math.random()).slice(0, 4);
         
-              document.querySelectorAll('.video').forEach((element, index) => {
+              const videoElements = document.querySelectorAll('.video');
+
+              videoElements.forEach((element, index) => {
                   element.src = `./static/videos/${selectedVideos[index]}`;
+                  element.muted = true; // Ensure video is muted
+                  element.play().catch(error => console.error("Video play failed:", error)); // Attempt to play
               });
           });
         </script>
